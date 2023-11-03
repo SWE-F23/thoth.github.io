@@ -22,7 +22,7 @@ export default function SignIn() {
                         className='textinput'
                     >
                             Log In
-                    </Button>
+                    </Button>        
         </div>
     )
 }
