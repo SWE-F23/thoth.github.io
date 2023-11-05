@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { getApp, getApps, initializeApp } from "firebase/app";
-import { getAuth, GithubAuthProvider } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/cordova";
+import { getAuth, GithubAuthProvider, GoogleAuthProvider} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,4 +28,4 @@ const auth = getAuth(app);
 const googleprovider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
-export { auth, googleprovider, githubProvider };
+export { auth, googleprovider, githubProvider};
