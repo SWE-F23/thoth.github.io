@@ -4,6 +4,9 @@ import {auth, googleprovider, githubProvider} from '../../firebase'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export function SignUp() {
@@ -12,22 +15,28 @@ export function SignUp() {
   const [passwordConfirm, setPasswordConfirm] = React.useState("");
   
   const SignUpAuth = () => {
+    // Still working or Regular Expression
+    // Complete Regular Expression for password
+    let regexp = new RegExp("");
     if(password === passwordConfirm){
+      if(regexp.test(password)){
       createUserWithEmailAndPassword(auth, email , password)
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
         // ...
-        alert("Signed Up!");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
         // ..
+        toast.success(errorMessage);
       });
+     }else{
+      // toast.error("Password must be at least 8 characters long and contain at least one uppercase letter, one number and one special character !");
+     }
     } else {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match !");
     }
   }
 

@@ -6,19 +6,20 @@ import React from "react";
 import {auth, googleprovider, githubProvider} from './firebase'
 import {signInWithPopup, GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
 import { sign } from "crypto";
+import { ToastContainer } from "react-toastify";
 
 
 export default function Home() {
   const [isSignUp, setIsSignUp] = React.useState(false);
   const [isGitHover, setIsGitHover] = React.useState(false);
   const [isGoogleHover, setIsGoogleHover] = React.useState(false);
-
+  
   const SignAuthGoogle = () => {
     signInWithPopup(auth, googleprovider)
       .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      //const credential = GoogleAuthProvider.credentialFromResult(result);
-      //const token = credential.accessToken;
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
       // The signed-in user info.
       // const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
@@ -58,6 +59,18 @@ export default function Home() {
   if (isSignUp) {
     return (
       <main className="main">
+        <ToastContainer
+          position="top-center"
+          autoClose={3500}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="dark"
+        />    
         <form className="form">
           <div className="formtop">  
             <SignUp />
