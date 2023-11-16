@@ -70,7 +70,7 @@ export default function Home() {
           draggable
           pauseOnHover
           theme="dark"
-        />    
+        />
         <form className="form">
           <div className="formtop">  
             <SignUp />
