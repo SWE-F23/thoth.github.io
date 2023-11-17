@@ -6,7 +6,7 @@ import React from "react";
 import {auth, googleprovider, githubProvider} from './firebase'
 import {signInWithPopup, GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
 import { sign } from "crypto";
-
+import App from "./mainpage";
 
 export default function Home() {
   const [isSignUp, setIsSignUp] = React.useState(false);
@@ -55,7 +55,9 @@ export default function Home() {
     });
   }  
 
-  if (isSignUp) {
+  return ( <App /> );
+
+  /*if (isSignUp) {
     return (
       <main className="main">
         <form className="form">
@@ -144,5 +146,5 @@ export default function Home() {
         </form>
       </main>
     );
-  }
+  }*/
 }
