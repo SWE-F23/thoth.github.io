@@ -1,6 +1,12 @@
+import '../../src/app/globals.css';
+
 export default function RoadMap() {
     return(
-    <svg width={1500} height={1500} xmlns="http://www.w3.org/2000/svg">
+    <svg 
+    width="100%"
+    height="100%"
+    viewBox="0 0 800 800"
+    xmlns="http://www.w3.org/2000/svg" className="roadmap">
              {/* Replace the following code with the actual SVG shapes generated from your data */}
             {/* beginning of map !*/}
   <g>
@@ -262,49 +268,49 @@ export default function RoadMap() {
     />
   </g>
   <a href="https://www.facebook.com">
-    <image href="./intro.png" height={70} x={200} y={150} />
+    <image href="../../public/assets/intro.png" height={70} x={200} y={150} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./IO.png" height={70} x={450} y={150} />
+    <image href="../../public/assets/IO.png" height={70} x={450} y={150} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./arithmetic.png" height={70} x={680} y={150} />
+    <image href="../../public/assets/arithmetic.png" height={70} x={680} y={150} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./function.png" height={70} x={750} y={350} />
+    <image href="../../public/assets/function.png" height={70} x={750} y={350} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./struct.png" height={70} x={520} y={350} />
+    <image href="../../public/assets/struct.png" height={70} x={520} y={350} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./ptr.png" height={70} x={300} y={350} />
+    <image href="../../public/assets/ptr.png" height={70} x={300} y={350} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./dynamicmemory.png" height={70} x={240} y={550} />
+    <image href="../../public/assets/dynamicmemory.png" height={70} x={240} y={550} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./reference.png" height={70} x={440} y={550} />
+    <image href="../../public/assets/reference.png" height={70} x={440} y={550} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./files.png" height={70} x={690} y={550} />
+    <image href="../../public/assets/files.png" height={70} x={690} y={550} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./class.png" height={70} x={760} y={750} />
+    <image href="../../public/assets/class.png" height={70} x={760} y={750} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./template.png" height={70} x={530} y={750} />
+    <image href="../../public/assets/template.png" height={70} x={530} y={750} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./exception.png" height={70} x={300} y={750} />
+    <image href="../../public/assets/exception.png" height={70} x={300} y={750} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./move.png" height={70} x={220} y={950} />
+    <image href="../../public/assets/move.png" height={70} x={220} y={950} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./thread.png" height={70} x={455} y={950} />
+    <image href="../../public/assets/thread.png" height={70} x={455} y={950} />
   </a>
   <a href="https://www.facebook.com">
-    <image href="./end.png" height={70} x={700} y={950} />
+    <image href="../../public/assets/end.png" height={70} x={700} y={950} />
   </a>
 </svg>
     );

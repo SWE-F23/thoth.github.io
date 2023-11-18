@@ -27,7 +27,7 @@ export default function MainPage() {
       <ResponsiveAppBar />
       <div className="mainpage-lessons">
         <div className="lesson-content-layout">
-          <Road />
+          <Test />
         </div>
         <div className="code-editor-container">
           <Editor />
