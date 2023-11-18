@@ -2,8 +2,11 @@ import { AppBar } from "@mui/material";
 import ResponsiveAppBar from "./AppBar";
 import Editor from "./editor";
 import { auth } from "../firebase";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
+import '../../src/app/globals.css';
+import Road from './test2'
+import Test from './test'
 
 export default function MainPage() {
   const [user, setUser] = useState(auth.currentUser);
@@ -20,10 +23,16 @@ export default function MainPage() {
   });
 
   return (
-    <>
-      <h1> {user ? user.email : 'Not logged in'} </h1>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
-      <AppBar />
-    </>
+    <div className="homepage">
+      <ResponsiveAppBar />
+      <div className="mainpage-lessons">
+        <div className="lesson-content-layout">
+          <Road />
+        </div>
+        <div className="code-editor-container">
+          <Editor />
+        </div>
+      </div>
+    </div>
   );
 };

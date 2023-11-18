@@ -12,9 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import { auth } from "../firebase";
 
 const pages = ["Lessons", "Practice", "Roadmap", "Code Editor"];
-const settings = ["Logout"];
+const settings = ["Profile","My account","Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -37,6 +38,11 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    auth.signOut();
   };
 
   return (
@@ -117,6 +123,7 @@ function ResponsiveAppBar() {
           >
             THOTH
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -150,12 +157,18 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+            >    
+              <MenuItem key="My Profile" onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">My Profile</Typography>
+              </MenuItem>
+              
+              <MenuItem key="Settings" onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Settings</Typography>
+              </MenuItem>
+              
+              <MenuItem key="Logout" onClick={handleLogout}>
+                    <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

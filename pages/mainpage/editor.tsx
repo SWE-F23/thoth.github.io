@@ -1,6 +1,8 @@
+import '../../src/app/globals.css';
+
 export default function Editor() {
     return(
-        <iframe
+        <iframe className='code-editor-container-iframe'
             src="https://www.interviewbit.com/embed/snippet/2eeda5a80dcf362d8494"
             title="Interviewbit Ide snippet/2eeda5a80dcf362d8494"
             loading="lazy"

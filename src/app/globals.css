@@ -75,17 +75,26 @@
   transition: filter 0.3s; 
 }
 
+.homepage {
+  height: 100%;
+  width:  100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  background-color: white;
+}
+
 .code-editor-container {
-  max-width: 90%; /* Maximum width of the editor */
-  width: 750px; /* Fallback width for larger screens */
-  margin-top: 10px; /* Adjusted margin */
+  width: 50%; /* Fallback width for larger screens */
+  height: 100%; /* Increased height */
   overflow: hidden; /* Hide overflow content */
-  aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-  height: 600px; /* Increased height */
+  aspect-ratio: 16 / 9; /* Aspect ratio of 16:9 */
 }
 
 /* Maintain aspect ratio for iframe content */
-.code-editor-container iframe {
+.code-editor-container-iframe {
   width: 100%;
   height: 100%;
   border: 1.25px solid black; /* Thick black border */
@@ -93,4 +102,23 @@
   background-color: white; /* Editor background color */
   display: block; /* Ensure iframe displays as block-level element */
   margin: 0; /* Reset margin */
+}
+
+.mainpage-lessons{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-content-layout{
+  display: flex;
+  flex-direction: row;
+  top : 0;
+  left: 0;
+  flex-direction: row;
+  width: 50%;
+  height: 100%;
 }
