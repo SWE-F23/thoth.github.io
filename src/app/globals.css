@@ -129,8 +129,23 @@
   display: block;
 }
 
-.roadmap polygon:hover,
+.roadmap polygon,
+.roadmap path {
+  transform-origin: center center; /* Set the transform origin to the center */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.roadmap polygon:not(.exclude-start-end-roadmap):hover,
 .roadmap path:hover {
-  transform: scale(1.01); /* Increase the size by 10% on hover */
-  transition: transform 0.4s ease; /* Add a smooth transition effect */
+  transform: scale(1.02); /* Increase the size by 10% on hover (uniform scaling) */
+}
+
+.start-end-roadmap:hover {
+  transform-origin: center center; /* Set the transform origin to the cen */
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+  transform: scale(1.02);
+}
+
+.exclude-start-end-roadmap {
+  color: initial;
 }

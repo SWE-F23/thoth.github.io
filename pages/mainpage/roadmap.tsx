@@ -23,9 +23,10 @@ export default function RoadMap() {
         viewBox="0 0 1100 1200"
         xmlns="http://www.w3.org/2000/svg" className="roadmap">
                 {/* Replace the following code with the actual SVG shapes generated from your data */}
-                {/* beginning of map !*/}
+        {/* beginning of map !*/}
+        <g className='start-end-roadmap'>
         <g>
-            <polygon
+            <polygon className='exclude-start-end-roadmap'
             points="384.31 189.63 359.95 142.05 94.58 142.01 94.58 236.89 360.14 236.84 384.31 189.63"
             fill="#141416"
             />
@@ -103,6 +104,7 @@ export default function RoadMap() {
         y="142.01"
         x="86.67"
         />
+        </g>
         </g>
         {/* right arrow */}
         <g transform="translate(0, 0)">
@@ -196,19 +198,14 @@ export default function RoadMap() {
             />
         </g>
         {/* end of map */}
-        <g transform="translate(227, 790)">
-            <polygon
+        <g className='start-end-roadmap'>
+        <g transform="translate(230, 790)">
+        <polygon className='exclude-start-end-roadmap'
             fill="#141416"
-            points="372.64 236.84 587.34 236.84 612.34 189.63 587.14 142.05 372.44 142.05 397.64 189.63 372.64 236.84"
-            />
+            points="372.64 236.84 587.34 236.84 612.34 189.63 587.14 142.05 372.44 142.05 397.64 189.63 372.64 236.84 612.34 236.84 612.34 142.05 587.14 142.05"
+        />
         </g>
-        <g transform="translate(530, 790)">
-            <polygon
-            points="384.31 189.63 359.95 142.05 94.58 142.01 94.58 236.89 360.14 236.84 384.31 189.63"
-            fill="#141416"
-            />
-        </g>
-        <g transform="translate(880, 932)">
+        <g transform="translate(839, 932)">
             <rect
             style={{ fill: "rgb(20, 20, 22)" }}
             transform="matrix(-0.9999999999999999,1.224646799147353e-16,-1.224646799147353e-16,-0.9999999999999999,152.22999633789055,308.14999023437497)"
@@ -282,7 +279,7 @@ export default function RoadMap() {
             x="86.67"
             />
         </g>
-
+        </g>
         <a>
             <image 
                 onClick={routeToHome}
