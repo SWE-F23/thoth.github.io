@@ -128,3 +128,9 @@
   height: 100%;
   display: block;
 }
+
+.roadmap polygon:hover,
+.roadmap path:hover {
+  transform: scale(1.01); /* Increase the size by 10% on hover */
+  transition: transform 0.4s ease; /* Add a smooth transition effect */
+}

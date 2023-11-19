@@ -1,6 +1,7 @@
 import '../../src/app/globals.css';
 import { useRouter } from 'next/navigation';
 import ResponsiveAppBar from "./AppBar";
+import React, { useState } from "react";
 
 export default function RoadMap() {
 
@@ -9,6 +10,9 @@ export default function RoadMap() {
     const routeToHome = () => {
         router.push('./home');
     }
+
+    const [isHover, setIsHover] = useState(false);
+
 
     return(
     <div className='homepage'>
