@@ -13,8 +13,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { auth } from "../firebase";
+import { useRouter } from 'next/navigation';
 
-const pages = ["Lessons", "Practice", "Roadmap", "Code Editor"];
+const pages = ["PlayGround", "Roadmap"];
 const settings = ["Profile","My account","Logout"];
 
 function ResponsiveAppBar() {
@@ -44,6 +45,16 @@ function ResponsiveAppBar() {
     handleCloseUserMenu();
     auth.signOut();
   };
+
+  const handleRoadMap = () => {
+    handleCloseUserMenu();
+    routeToRoadMap();
+  };
+  const router = useRouter();
+
+  const routeToRoadMap = () => {
+      router.push('./roadmap');
+  }
 
   return (
     <AppBar position="static">
@@ -98,7 +109,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleRoadMap}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -128,7 +139,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleRoadMap}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
@@ -139,7 +150,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Omar Bahgat" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={auth.currentUser?.email?.toString()} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

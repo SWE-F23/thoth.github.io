@@ -60,17 +60,6 @@ int main() {
         ensure a clean console output.
       </p>
 
-      <h3>Running Your Program</h3>
-
-      <p>
-        To see the result, you'll need a C++ compiler. You can use an integrated development
-        environment (IDE) like Code::Blocks, Visual Studio, or an online compiler like{' '}
-        <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" rel="noreferrer">
-          OnlineGDB
-        </a>
-        .
-      </p>
-
       <p>Copy the code, compile, and run your program. You should see:</p>
 
       <pre>

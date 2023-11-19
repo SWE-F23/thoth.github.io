@@ -5,8 +5,7 @@ import { auth } from "../firebase";
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation';
 import '../../src/app/globals.css';
-import Road from './test2'
-import Test from './test'
+import Test from './LessonDemo'
 
 export default function MainPage() {
   const [user, setUser] = useState(auth.currentUser);
