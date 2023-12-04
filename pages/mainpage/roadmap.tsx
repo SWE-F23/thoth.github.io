@@ -13,7 +13,10 @@ export default function RoadMap() {
 
     const [isHover, setIsHover] = useState(false);
 
-
+    const mapeffect = "roadmap"
+    const maprotatingeffect = "rotate-map"
+    const combinedEffects = ['roadmap','rotate-map'].join(' ');
+    
     return(
     <div className='homepage'>
         <ResponsiveAppBar />
@@ -21,7 +24,7 @@ export default function RoadMap() {
         width="100%"
         height="100%"
         viewBox="0 0 1100 1200"
-        xmlns="http://www.w3.org/2000/svg" className="roadmap">
+        xmlns="http://www.w3.org/2000/svg" className={combinedEffects}>
                 {/* Replace the following code with the actual SVG shapes generated from your data */}
         {/* beginning of map !*/}
         <g className='start-end-roadmap'>
