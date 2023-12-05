@@ -50,10 +50,20 @@ function ResponsiveAppBar() {
     handleCloseUserMenu();
     routeToRoadMap();
   };
+
+  const handleProfile = () => {
+    handleCloseUserMenu();
+    routeToProfile();  
+  };
+
   const router = useRouter();
 
   const routeToRoadMap = () => {
       router.push('./roadmap');
+  }
+
+  const routeToProfile = () => {
+    router.push('./profile');
   }
 
   return (
@@ -169,7 +179,7 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >    
-              <MenuItem key="My Profile" onClick={handleCloseUserMenu}>
+              <MenuItem key="My Profile" onClick={handleProfile}>
                     <Typography textAlign="center">My Profile</Typography>
               </MenuItem>
               
