@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import '../../src/app/globals.css';
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import { set } from "firebase/database";
 
 
 export default function Profile() {
@@ -23,7 +24,6 @@ export default function Profile() {
     }
 
     const listen = auth.onAuthStateChanged((user) => {    // This function will be called whenever the authentication state changes
-        setUser(user);
         // Check user on the client side
         if (!user) {
           // Redirect to login page if user is not logged in
@@ -43,6 +43,7 @@ export default function Profile() {
                 <TextField 
                   className="profile-text-editors"
                   disabled={!editMode}
+                  defaultValue={user?.email}
                 />
               </div>
               <div className="profile-content-size">
@@ -51,6 +52,7 @@ export default function Profile() {
                   className="profile-text-editors"
                   label="No Username"
                   disabled={!editMode}
+                  defaultValue={user?.displayName}
                 />
               </div>
               <div className="profile-content-size"> 
