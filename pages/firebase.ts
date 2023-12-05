@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth, GithubAuthProvider, GoogleAuthProvider} from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,7 +15,8 @@ const firebaseConfig = {
   storageBucket: "thoth-e334d.appspot.com",
   messagingSenderId: "749641722230",
   appId: "1:749641722230:web:4d180e35dfeb695ccff257",
-  measurementId: "G-W7T6QFNHWR"
+  measurementId: "G-W7T6QFNHWR",
+  databaseURL: "https://thoth-e334d-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
@@ -27,6 +29,6 @@ const auth = getAuth(app);
 // Initialize Firebase Authentication Providers
 const googleprovider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+const database = getDatabase(app);
 
-
-export { auth, googleprovider, githubProvider};
+export { auth, googleprovider, githubProvider, database};

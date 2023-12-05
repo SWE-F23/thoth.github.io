@@ -11,10 +11,6 @@ export default function RoadMap() {
         router.push('./home');
     }
 
-    const [isHover, setIsHover] = useState(false);
-
-    const mapeffect = "roadmap"
-    const maprotatingeffect = "rotate-map"
     const combinedEffects = ['roadmap','rotate-map'].join(' ');
     
     return(
