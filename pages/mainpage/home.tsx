@@ -30,7 +30,8 @@ export default function MainPage() {
   }
 
   function showValue() {
-    alert(editorRef.current.getValue());
+    if(editorRef.current)
+      alert(editorRef.current.getValue());
   }
 
   const router = useRouter();
