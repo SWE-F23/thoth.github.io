@@ -1,16 +1,39 @@
 import ResponsiveAppBar from "./AppBar";
 import { auth , database} from "../firebase";
-import React, { useState } from "react";
+import { onAuthStateChanged, signOut, updateEmail,updatePassword, UserProfile, verifyBeforeUpdateEmail} from "firebase/auth";
+import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import '../../src/app/globals.css';
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import { set } from "firebase/database";
+import { updateProfile} from "firebase/auth";
+import { getDatabase, ref, child, get, set } from "firebase/database";
 
 
 export default function Profile() {
-    const [user, setUser] = useState(auth.currentUser);
+    const [authUser, setAuthUser] = useState(auth?.currentUser);
+    const [userId, setUserId] = useState(authUser?.uid);
+    const [isEmailUpdated, setIsEmailUpdated] = useState(false);
+    const [isPasswordUpdated, setIsPasswordUpdated] = useState(false);
+    const [isUserUpdated, setIsUserUpdated] = useState(false);
+    // const [isCityUpdated, setIsCityUpdated] = useState(false);
+      
+    useEffect(() => {
+      const listen = onAuthStateChanged(auth,(user) => {
+      if (user) {
+        setAuthUser(user);
+        setUserId(user.uid);
+        console.log(user.email);
+      } else{
+         router.push('/');
+      }
+      })
+    })
 
+    const [newemail, setNewEmail] = React.useState<null | string>(null);
+    const [newpassword, setNewPassword] = React.useState<null | string>(null);
+    const [newuser, setNewUser] = React.useState<null | string>(null);
+    const [newcity, setNewCity] = React.useState<null | string>(null);
     const [editMode, setEditMode] = useState(false);
     
     const router = useRouter();
@@ -18,18 +41,53 @@ export default function Profile() {
     const handleToggleEditMode = () => {
       setEditMode(true);
     }
-    
-    const handleSave = () => {
-      setEditMode(false);
-    }
 
-    const listen = auth.onAuthStateChanged((user) => {    // This function will be called whenever the authentication state changes
-        // Check user on the client side
-        if (!user) {
-          // Redirect to login page if user is not logged in
-          router.push('/');
-        }
-    });
+    const handleSave = () => {
+      if(newemail && authUser){
+        updateEmail(authUser, newemail).then(() => {
+          // Email updated!
+          // ...
+          setIsEmailUpdated(true);
+        }).catch((error) => {
+          // An error occurred
+          // ...
+          alert(error.message);
+        }); 
+      }else{
+        setIsEmailUpdated(true);
+      }
+      if(newpassword && authUser){
+        updatePassword(authUser, newpassword).then(() => {
+          // Update successful.
+          setIsPasswordUpdated(true);
+        }).catch((error) => {
+          // An error ocurred
+          // ...
+          alert(error.message);
+        });
+      }else{
+        setIsPasswordUpdated(true);
+      }
+      if(newuser && authUser){
+        updateProfile(authUser, {
+          displayName: newuser
+        }).then(() => {
+          // Profile updated!
+          // ...
+          setIsUserUpdated(true);
+        }).catch((error) => {
+          // An error occurred
+          // ...
+          alert(error.message);
+        });        
+      }else{
+        setIsUserUpdated(true);
+      }
+      if(isEmailUpdated  && isPasswordUpdated && isUserUpdated){
+        setEditMode(false);
+        alert("Profile Updated Successfully!");
+      }
+    }
   
     return (
       <div className="homepage">
@@ -43,32 +101,36 @@ export default function Profile() {
                 <TextField 
                   className="profile-text-editors"
                   disabled={!editMode}
-                  defaultValue={user?.email}
+                  placeholder={authUser?.email ? authUser.email : "No Email"}
+                  onChange = {(event) => setNewEmail(event.target.value)}  
                 />
               </div>
               <div className="profile-content-size">
                 <h2>Username</h2>
                 <TextField 
                   className="profile-text-editors"
-                  label="No Username"
                   disabled={!editMode}
-                  defaultValue={user?.displayName}
+                  placeholder={authUser?.displayName ? authUser.displayName : "No Username"}
+                  onChange = {(event) => setNewUser(event.target.value)}  
                 />
               </div>
               <div className="profile-content-size"> 
                 <h2>Password</h2>
                 <TextField 
                   className="profile-text-editors"
-                  label="Change Password"
+                  placeholder="Type Your New Password"
+                  type="password"
                   disabled={!editMode}
+                  onChange = {(event) => setNewPassword(event.target.value)}  
                 />
               </div>
               <div className="profile-content-size"> 
                 <h2>City</h2>
                 <TextField 
                   className="profile-text-editors"
-                  label="No City"
+                  placeholder="No City"
                   disabled={!editMode}
+                  onChange = {(event) => setNewCity(event.target.value)}  
                 />
               </div>
               <div className="profile-content-size"> 

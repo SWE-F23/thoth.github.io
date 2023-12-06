@@ -1,15 +1,25 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import {auth, googleprovider, githubProvider} from '../../firebase'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, GithubAuthProvider} from "firebase/auth";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useRouter } from 'next/navigation';
+import { getDatabase, ref, set } from "firebase/database";
 
+function writeUserData(userId : string, name: any, email: any,city : string) {
+  const db = getDatabase();
+  set(ref(db, "users/" + userId), {
+    username: email,
+    email: email,
+    city: "No City"
+  });
+} 
 
 export function GoogleLogin(){
   const router = useRouter();
   const [isGoogleHover, setIsGoogleHover] = React.useState(false);
+
 
   const SignAuthGoogle = () => {
     signInWithPopup(auth, googleprovider)
@@ -20,6 +30,7 @@ export function GoogleLogin(){
       // The signed-in user info.
       // const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
+      writeUserData(result.user.uid, result.user.email, result.user.email, "No City");
       router.push('./mainpage/roadmap');
     }).catch((error) => {
       // Handle Errors here.
@@ -55,6 +66,7 @@ export function GitHubLogin(){
     signInWithPopup(auth, githubProvider)
     .then((result) => {
       // ...
+    writeUserData(result.user.uid, result.user.email, result.user.email, "No City");  
     router.push('./mainpage/roadmap');
   }).catch((error) => {
     // Handle Errors here.
@@ -95,6 +107,7 @@ export function SignUp(){
       createUserWithEmailAndPassword(auth, email , password)
       .then((userCredential) => {
         // Signed up 
+        writeUserData(userCredential.user.uid, userCredential.user.email, userCredential.user.email, "No City");  
         router.push('./mainpage/roadmap');
       })
       .catch((error) => {

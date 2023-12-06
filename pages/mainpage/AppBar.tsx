@@ -67,7 +67,7 @@ function ResponsiveAppBar() {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="appbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LightbulbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

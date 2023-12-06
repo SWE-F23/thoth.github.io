@@ -1,35 +1,62 @@
-import { AppBar } from "@mui/material";
 import ResponsiveAppBar from "./AppBar";
-import Editor from "./editor";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../firebase";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import '../../src/app/globals.css';
 import Test from './LessonDemo'
+import Editor from '@monaco-editor/react';
+import { Button } from "@mui/material";
 
 export default function MainPage() {
-  const [user, setUser] = useState(auth.currentUser);
+  const [authUser, setAuthUser] = useState<User | null>(null);
+  const [submittedCode, setSubmittedCode] = useState<string>("");
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth,(user) => {
+    if (user) {
+      setAuthUser(user);
+      console.log(user.email);
+    } else{
+      setAuthUser(null);
+      router.push('/');
+    }
+    })
+  })
+
+  const editorRef = useRef(null);
+
+  function handleEditorDidMount(editor: any, monaco: any) {
+    editorRef.current = editor;
+  }
+
+  function showValue() {
+    alert(editorRef.current.getValue());
+  }
 
   const router = useRouter();
-
-  const listen = auth.onAuthStateChanged((user) => {    // This function will be called whenever the authentication state changes
-      setUser(user);
-      // Check user on the client side
-      if (!user) {
-        // Redirect to login page if user is not logged in
-        router.push('/');
-      }
-  });
-
   return (
     <div className="homepage">
       <ResponsiveAppBar />
       <div className="mainpage-lessons">
         <div className="lesson-content-layout">
           <Test />
+          <Button
+              onClick={showValue}
+              className="submit-code-button"
+              variant="contained"
+          >
+            SUBMIT CODE
+          </Button>
         </div>
         <div className="code-editor-container">
-          <Editor />
+          <></>
+          <Editor
+            className="editor"
+            defaultLanguage="cpp"
+            defaultValue="int main() {return 0;}"
+            theme="vs-dark"
+            onMount={handleEditorDidMount}
+          />
         </div>
       </div>
     </div>
