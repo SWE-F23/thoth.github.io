@@ -56,6 +56,11 @@ function ResponsiveAppBar() {
     routeToProfile();  
   };
 
+  const handlePlayground = () => {
+    handleCloseUserMenu();
+    routeToPlayground();
+  }
+
   const router = useRouter();
 
   const routeToRoadMap = () => {
@@ -64,6 +69,10 @@ function ResponsiveAppBar() {
 
   const routeToProfile = () => {
     router.push('./profile');
+  }
+
+  const routeToPlayground = () => {
+    router.push('./practiceset');
   }
 
   return (
@@ -119,7 +128,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleRoadMap}>
+                <MenuItem key={page} onClick={page === "PlayGround" ? handlePlayground : handleRoadMap}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -149,7 +158,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleRoadMap}
+                onClick={page === "PlayGround" ? handlePlayground : handleRoadMap}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

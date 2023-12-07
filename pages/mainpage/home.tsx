@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import '../../src/app/globals.css';
-import Test from './LessonDemo'
+import Test from './lesson'
 import Editor from '@monaco-editor/react';
 import { Button } from "@mui/material";
 

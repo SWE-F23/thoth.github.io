@@ -78,11 +78,9 @@
 .homepage {
   height: 100%;
   width:  100%;
-
   position: fixed;
   top: 0;
   left: 0;
-  
   background-color: white;
 }
 
@@ -199,11 +197,6 @@
   width: 100%;
 }
 
-
 .editor{
   height: 100%;
-}
-
-.appbar{
-  height: 7%;
 }
