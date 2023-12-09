@@ -32,3 +32,7 @@ const githubProvider = new GithubAuthProvider();
 const database = getDatabase(app);
 
 export { auth, googleprovider, githubProvider, database};
+
+export default function exportDefault() {
+  return (null);
+ }
