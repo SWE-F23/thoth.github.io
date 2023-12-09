@@ -46,7 +46,8 @@ export default function MainPage() {
   function showValue() {
     const fetchData = async () => {
       if (editorRef.current) {
-        const compilerResult = await axios(GetOptions("/compile", { code: (editorRef.current as any).getValue() }));
+        const editorValue = (editorRef.current as any).getValue();
+        const compilerResult = await axios(GetOptions("/compile", { code: editorValue }));
         const runResult = await axios(GetOptions("/run", {}));
         const compareResult = await axios(GetOptions("/compare", {
           a: runResult.data,
@@ -58,7 +59,6 @@ export default function MainPage() {
     };
     fetchData();
   }
-
 
   const router = useRouter();
   return (
