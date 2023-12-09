@@ -7,7 +7,7 @@ export default function RoadMap() {
 
     const router = useRouter();
 
-    const routeToHome = () => {
+    const routeToFirstLesson = () => {
         router.push('./home');
     }
 
@@ -281,77 +281,77 @@ export default function RoadMap() {
         </g>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/intro.png" height={70} x={200} y={150} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/IO.png" height={70} x={450} y={150} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/arithmetic.png" height={70} x={680} y={150} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/function.png" height={70} x={750} y={350} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/struct.png" height={70} x={520} y={350} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/ptr.png" height={70} x={300} y={350} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/dynamicmemory.png" height={70} x={240} y={550} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/reference.png" height={70} x={440} y={550} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/files.png" height={70} x={690} y={550} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/class.png" height={70} x={760} y={750} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/template.png" height={70} x={530} y={750} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/exception.png" height={70} x={300} y={750} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/move.png" height={70} x={220} y={950} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/thread.png" height={70} x={455} y={950} />
         </a>
         <a>
             <image 
-                onClick={routeToHome}
+                onClick={routeToFirstLesson}
                 href="/assets/end.png" height={70} x={700} y={950} />
         </a>
         </svg>

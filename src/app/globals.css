@@ -95,7 +95,6 @@
 .code-editor-container-iframe {
   width: 100%;
   height: 100%;
-  border: 1.25px solid black; /* Thick black border */
   box-sizing: border-box; /* Ensures the border size is included within the width */
   background-color: white; /* Editor background color */
   display: block; /* Ensure iframe displays as block-level element */

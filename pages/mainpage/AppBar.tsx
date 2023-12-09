@@ -15,7 +15,7 @@ import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { auth } from "../firebase";
 import { useRouter } from 'next/navigation';
 
-const pages = ["PlayGround", "Roadmap"];
+const pages = ["PlayGround", "Roadmap", "Practice Set"];
 const settings = ["Profile","My account","Logout"];
 
 function ResponsiveAppBar() {
@@ -61,6 +61,11 @@ function ResponsiveAppBar() {
     routeToPlayground();
   }
 
+  const handlePracticeSet = () => {
+    handleCloseUserMenu();
+    routeToPracticeSet();
+  }
+
   const router = useRouter();
 
   const routeToRoadMap = () => {
@@ -72,6 +77,10 @@ function ResponsiveAppBar() {
   }
 
   const routeToPlayground = () => {
+    router.push('./playground');
+  }
+
+  const routeToPracticeSet = () => {
     router.push('./practiceset');
   }
 
@@ -128,7 +137,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={page === "PlayGround" ? handlePlayground : handleRoadMap}>
+                <MenuItem key={page} onClick={page === "PlayGround" ? handlePlayground : ( (page === "Practice Set") ? handlePracticeSet : handleRoadMap)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -158,7 +167,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={page === "PlayGround" ? handlePlayground : handleRoadMap}
+                onClick={page === "PlayGround" ? handlePlayground : ( (page === "Practice Set") ? handlePracticeSet : handleRoadMap)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
