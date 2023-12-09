@@ -46,19 +46,19 @@ export default function MainPage() {
   function showValue() {
     const fetchData = async () => {
       if (editorRef.current) {
-        const compilerResult = await axios(GetOptions("/compile",
-          { code: editorRef.current.getValue() }));
+        const compilerResult = await axios(GetOptions("/compile", { code: (editorRef.current as any).getValue() }));
         const runResult = await axios(GetOptions("/run", {}));
         const compareResult = await axios(GetOptions("/compare", {
           a: runResult.data,
           b: "1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 "
         }));
         setCompilerOutput(compilerResult.data);
-        alert(compareResult.data? "Correct" : "Incorrect");
+        alert(compareResult.data ? "Correct" : "Incorrect");
       }
     };
     fetchData();
   }
+
 
   const router = useRouter();
   return (
