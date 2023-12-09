@@ -1,17 +1,12 @@
-/**
- * @type {import('next').NextConfig}
- */
-const nextConfig = {
-    output: 'export',
-   
-    // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
-    // trailingSlash: true,
-   
-    // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`
-    // skipTrailingSlashRedirect: true,
-   
-    // Optional: Change the output directory `out` -> `dist`
-    // distDir: 'dist',
-  }
-   
-  module.exports = nextConfig
+// next.config.js
+module.exports = {
+    // Other configurations...
+  
+    // Use the output option for export
+    output: {
+      // Specify the directory for export
+      // For example, "out" is a common choice
+      dir: 'out',
+    },
+  };
+  
