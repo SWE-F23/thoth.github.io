@@ -8,6 +8,10 @@ import Test from './lesson'
 import Editor from '@monaco-editor/react';
 import { Button } from "@mui/material";
 import axios from "axios";
+import {toast} from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function GetOptions(urlPostfix: string, params: any) {
   return {
@@ -46,15 +50,21 @@ export default function MainPage() {
   function showValue() {
     const fetchData = async () => {
       if (editorRef.current) {
+        const deleteResult = await axios(GetOptions("/deleteAOut", {}));
         const editorValue = (editorRef.current as any).getValue();
         const compilerResult = await axios(GetOptions("/compile", { code: editorValue }));
         const runResult = await axios(GetOptions("/run", {}));
         const compareResult = await axios(GetOptions("/compare", {
           a: runResult.data,
-          b: "1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 "
+          b: "Hello, World!"
+          // 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 
         }));
         setCompilerOutput(compilerResult.data);
-        alert(compareResult.data ? "Correct" : "Incorrect");
+        if(compareResult.data){
+          toast.success("Correct Answer");
+        }else{
+          toast.error("Incorrect Answer");
+        }
       }
     };
     fetchData();
@@ -63,6 +73,18 @@ export default function MainPage() {
   const router = useRouter();
   return (
     <div className="homepage">
+      <ToastContainer
+          position="top-center"
+          autoClose={3500}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       <ResponsiveAppBar />
       <div className="mainpage-lessons">
         <div className="lesson-content-layout">

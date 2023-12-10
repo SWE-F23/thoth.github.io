@@ -62,3 +62,20 @@ srv.get('/run', (req, res) => {
       res.send(stdout);
     });
 })
+
+// New endpoint to delete a.out file
+srv.get('/deleteAOut', (req, res) => {
+  deleteAOutFile();
+  res.send('a.out deleted successfully');
+});
+
+// Function to delete a.out file
+function deleteAOutFile() {
+  fs.unlink('/tmp/a.out', (err) => {
+    if (err) {
+      console.error('Error deleting a.out file', err);
+    } else {
+      console.log('a.out file deleted successfully');
+    }
+  });
+}

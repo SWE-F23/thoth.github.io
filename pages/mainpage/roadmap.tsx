@@ -2,6 +2,8 @@ import '../../src/app/globals.css';
 import { useRouter } from 'next/navigation';
 import ResponsiveAppBar from "./AppBar";
 import React, { useState } from "react";
+import arithmeticImage from '../../public/assets/arithmetic.png';
+
 
 export default function RoadMap() {
 
