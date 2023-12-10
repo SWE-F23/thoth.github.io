@@ -8,6 +8,9 @@ import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { updateProfile} from "firebase/auth";
 import { getDatabase, ref, child, get, set } from "firebase/database";
+import {toast} from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Profile() {
@@ -16,6 +19,7 @@ export default function Profile() {
     const [isEmailUpdated, setIsEmailUpdated] = useState(false);
     const [isPasswordUpdated, setIsPasswordUpdated] = useState(false);
     const [isUserUpdated, setIsUserUpdated] = useState(false);
+    const [isCityUpdated, setIsCityUpdated] = useState(false);
     // const [isCityUpdated, setIsCityUpdated] = useState(false);
       
     useEffect(() => {
@@ -50,11 +54,19 @@ export default function Profile() {
           setIsEmailUpdated(true);
         }).catch((error) => {
           // An error occurred
-          // ...
-          alert(error.message);
+          if(error.message === "Firebase: The email address is already in use by another account. (auth/email-already-in-use)."){
+            toast.error("Email Already In Use");
+            setIsEmailUpdated(false);
+          }else if(error.message === "Firebase: Error (auth/requires-recent-login)."){
+            toast.error("You must be logged in recently to update your email");
+            setIsEmailUpdated(false);
+          }else{
+            alert(error.message);
+            setIsEmailUpdated(false);
+          }
         }); 
       }else{
-        setIsEmailUpdated(true);
+        setIsEmailUpdated(false);
       }
       if(newpassword && authUser){
         updatePassword(authUser, newpassword).then(() => {
@@ -63,10 +75,19 @@ export default function Profile() {
         }).catch((error) => {
           // An error ocurred
           // ...
-          alert(error.message);
+          if(error.message === "Firebase: Error (auth/requires-recent-login)."){
+            toast.error("You must be logged in recently to update your email");
+            setIsEmailUpdated(false);}
+          else if(error.message === "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+            toast.error("Password should be at least 6 characters");
+            setIsPasswordUpdated(false); 
+          }else {
+            alert(error.message);
+          }
+          setIsPasswordUpdated(false);
         });
       }else{
-        setIsPasswordUpdated(true);
+        setIsPasswordUpdated(false);
       }
       if(newuser && authUser){
         updateProfile(authUser, {
@@ -79,19 +100,49 @@ export default function Profile() {
           // An error occurred
           // ...
           alert(error.message);
+          setIsUserUpdated(false);
         });        
       }else{
-        setIsUserUpdated(true);
+        setIsUserUpdated(false);
       }
-      if(isEmailUpdated  && isPasswordUpdated && isUserUpdated){
+      if(isEmailUpdated){
         setEditMode(false);
-        alert("Profile Updated Successfully!");
+        setIsEmailUpdated(false);
+        setIsPasswordUpdated(false);
+        setIsUserUpdated(false);
+        toast.success("Email Updated Successfully");
+      }
+      if(isPasswordUpdated){
+        setEditMode(false);
+        setIsEmailUpdated(false);
+        setIsPasswordUpdated(false);
+        setIsUserUpdated(false);
+        toast.success("Pssword Updated Successfully");
+      }
+      if(isUserUpdated){
+        setEditMode(false);
+        setIsEmailUpdated(false);
+        setIsPasswordUpdated(false);
+        setIsUserUpdated(false);
+        toast.success("Username Updated Successfully");
       }
     }
   
     return (
       <div className="homepage">
         <ResponsiveAppBar />
+        <ToastContainer
+          position="top-center"
+          autoClose={3500}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <div className="profile">
           <div className="top-profile"></div>
           <div className="profile-content"> 
